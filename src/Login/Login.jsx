@@ -1,5 +1,5 @@
 import {Button} from "react-bootstrap";
-import './login.css';
+import './Login.css';
 import {useState} from "react";
 import {useNavigate} from "react-router-dom";
 import axios from "axios";
