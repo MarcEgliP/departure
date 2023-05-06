@@ -15,7 +15,7 @@ export function Login() {
             .then(res => {
                 setToken(res.data.token);
                 navigate("/");
-            })
+            });
     }
     return (
         <div className="d-flex justify-content-center align-items-center flex-column vh-100">
