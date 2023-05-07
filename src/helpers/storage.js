@@ -1,8 +1,8 @@
 export function setToken(userToken) {
-    sessionStorage.setItem('token', JSON.stringify(userToken));
+    sessionStorage.setItem('x-access-token', userToken);
 }
 export function getToken() {
-    return sessionStorage.getItem('token');
+    return sessionStorage.getItem('x-access-token');
 }
 
 export function tokenIsPresent() {
