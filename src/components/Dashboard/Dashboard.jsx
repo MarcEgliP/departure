@@ -4,8 +4,9 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import {useEffect, useState} from "react";
 import {retrieveFavorites} from "./dashboard-service";
 import {getPersonalInformation} from "../../helpers/storage";
+import {Navigate} from "react-router-dom";
 
-export function Dashboard() {
+export function Dashboard({isLoggedIn}) {
     const [favorites, setFavorites] = useState([]);
     useEffect(() => {
         retrieveFavorites().then((response) => {
@@ -13,6 +14,9 @@ export function Dashboard() {
         })
     }, []);
 
+    if(!isLoggedIn){
+        return <Navigate to="/login"/>
+    }
     return (
         <>
             <Navbar/>
