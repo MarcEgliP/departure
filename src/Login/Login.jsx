@@ -25,6 +25,7 @@ export function Login({isLoggedIn, setIsLoggedIn}) {
                 setToken(res.data.token);
                 navigate("/");
             })
+            //TODO: Päscu fragen ob Error auch dann nicht gezeigt wenn von User verschuldet
             .catch(() => {
                 setShowError(true);
             });
