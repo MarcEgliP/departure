@@ -2,7 +2,7 @@ import {Navbar} from "../Navbar/Navbar";
 import {ListRow} from "./ListRow/ListRow";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import {useEffect, useState} from "react";
-import {retrieveFavorites} from "../../helpers/dashboard-service";
+import {retrieveFavorites} from "./dashboard-service";
 
 export function Dashboard() {
     const [favorites, setFavorites] = useState([]);
