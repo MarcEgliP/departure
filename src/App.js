@@ -1,7 +1,7 @@
 import './App.css';
 import {Navigate, Route, Routes, useNavigate} from "react-router-dom";
-import {Dashboard} from "./Dashboard";
-import {Login} from "./Login/Login";
+import {Dashboard} from "./components/Dashboard/Dashboard";
+import {Login} from "./components/Login/Login";
 import "./helpers/interceptor.js"
 import {tokenIsPresent} from "./helpers/storage";
 import {useEffect, useState} from "react";
