@@ -16,7 +16,7 @@ export function Dashboard({isLoggedIn}) {
         })
     }, []);
 
-    if(!isLoggedIn){
+    if (!isLoggedIn) {
         return <Navigate to="/login"/>
     }
     return (
@@ -26,7 +26,7 @@ export function Dashboard({isLoggedIn}) {
                 <div className={"col-6 border border-primary"}>
                     <h1 className={"display-3 m-5"}>Hallo {getPersonalInformation().firstName}</h1>
                     <h3 className={"display-6 mx-5"}>Gespeicherte Verbindungen</h3>
-                    <div className="overflow-auto fav-container">
+                    <div className="accordion mx-5 mb-5 overflow-auto fav-container" id="accordionConnections">
                         {
                             favorites.map((favorite => <ListRow
                                 from={favorite.from}

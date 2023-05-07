@@ -1,21 +1,36 @@
+import {useEffect, useState} from "react";
+import {retrieveConnections} from "./list-row-service";
+import {Connection} from "./Connection/Connection";
+
 export function ListRow({from, to}) {
+    const [availableConnections, setAvailableConnections] = useState([]);
+
+    useEffect(() => {
+        retrieveConnections(from, to)
+            .then((response) => {
+                setAvailableConnections(response.data.connections);
+            });
+    }, []);
+
     return (
         <>
-            <div className="card m-3 mx-5">
-                <div className="card-body d-flex flex-row">
-                    <div className="col-3 fs-4">
-                        <b>{from}</b>
-                    </div>
-                    <div className="col-1 fs-4">
-                        <i className="bi bi-indent"></i>
-                    </div>
-                    <div className="col-4 fs-4">
-                        <b>{to}</b>
-                    </div>
-                    <div className="col-1"></div>
-                    <div className="col-3 fs-4 text-center">
-                        <i className="bi bi-trash mx-5"></i>
-                        <i className="bi bi-chevron-down"></i>
+            <div className="accordion-item w-75">
+                <h2 className="accordion-header" id="headingOne">
+                    <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target={"#" + from + to}>
+                        {from} -> {to}
+                    </button>
+                </h2>
+                <div id={from + to} className="accordion-collapse collapse" aria-labelledby="headingOne"
+                     data-bs-parent="#accordionConnections">
+                    <div className="accordion-body">
+                        {
+                            availableConnections.map((connection, index) =>
+                                <Connection
+                                    connection={connection}
+                                    key={index}/>
+                            )
+                        }
                     </div>
                 </div>
             </div>
