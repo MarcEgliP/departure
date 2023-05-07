@@ -1,21 +1,27 @@
 import './App.css';
-import {Route, Routes, BrowserRouter, redirect} from "react-router-dom";
+import {Navigate, Route, Routes, useNavigate} from "react-router-dom";
 import {Dashboard} from "./Dashboard";
 import {Login} from "./Login/Login";
 import "./helpers/interceptor.js"
-import {getToken} from "./helpers/storage";
+import {tokenIsPresent} from "./helpers/storage";
+import {useEffect, useState} from "react";
 
 function App() {
-    if(!getToken()){
-        redirect("/")
-    }
+    const navigate = useNavigate();
+    const [isLoggedIn, setIsLoggedIn] = useState(tokenIsPresent());
+
+    useEffect(() => {
+        if (!isLoggedIn) {
+            navigate("/login");
+        }
+    }, []);
+
     return (
-        <BrowserRouter >
-            <Routes>
-                <Route path="/login" element={<Login/>}/>
-                <Route path="/" element={<Dashboard/>}/>
-            </Routes>
-        </BrowserRouter>
+        <Routes>
+            <Route path="/login" element={<Login isLoggedIn={isLoggedIn} setIsLoggedIn={() => setIsLoggedIn(true)} />}/>
+            <Route path="/" element={<Dashboard/>}/>
+            <Route path="*" element={<Navigate to="/"/>}/>
+        </Routes>
     );
 }
 

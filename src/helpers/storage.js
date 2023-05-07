@@ -4,3 +4,7 @@ export function setToken(userToken) {
 export function getToken() {
     return sessionStorage.getItem('token');
 }
+
+export function tokenIsPresent() {
+    return getToken() != null;
+}

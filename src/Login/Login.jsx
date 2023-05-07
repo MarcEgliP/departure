@@ -1,20 +1,33 @@
 import {Button} from "react-bootstrap";
 import './Login.css';
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import axios from "axios";
 import {setToken} from "../helpers/storage";
 
-export function Login() {
+export function Login({isLoggedIn, setIsLoggedIn}) {
     const [email, setEmail] = useState("");
+    const [showError, setShowError] = useState(false);
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
+
+    useEffect(() => {
+        if(isLoggedIn) {
+            navigate("/");
+        }
+    }, []);
 
     const handleSubmit = () => {
         axios.post('/api/login', {"email": email, "password": password})
             .then(res => {
+                setIsLoggedIn();
+                setShowError(false);
                 setToken(res.data.token);
                 navigate("/");
+            })
+            //TODO: Päscu fragen ob Error auch dann nicht gezeigt wenn von User verschuldet
+            .catch(() => {
+                setShowError(true);
             });
     }
     return (
@@ -27,6 +40,12 @@ export function Login() {
             <Button onClick={handleSubmit}>
                 Submit
             </Button>
+            {
+                showError &&
+                <div className="alert alert-danger mt-5" role="alert">
+                    Email or password invalid
+                </div>
+            }
         </div>
     )
 }
