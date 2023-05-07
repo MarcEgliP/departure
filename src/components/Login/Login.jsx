@@ -2,8 +2,8 @@ import {Button} from "react-bootstrap";
 import './Login.css';
 import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
-import axios from "axios";
-import {setToken} from "../../helpers/storage";
+import {processLoginResponse, setPersonalInformation, setToken} from "../../helpers/storage";
+import {retrieveToken} from "./login-service";
 
 export function Login({isLoggedIn, setIsLoggedIn}) {
     const [email, setEmail] = useState("");
@@ -12,17 +12,17 @@ export function Login({isLoggedIn, setIsLoggedIn}) {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if(isLoggedIn) {
+        if (isLoggedIn) {
             navigate("/");
         }
     }, []);
 
     const handleSubmit = () => {
-        axios.post('/api/login', {"email": email, "password": password})
+        retrieveToken(email, password)
             .then(res => {
                 setIsLoggedIn();
                 setShowError(false);
-                setToken(res.data.token);
+                processLoginResponse(res.data);
                 navigate("/");
             })
             //TODO: Päscu fragen ob Error auch dann nicht gezeigt wenn von User verschuldet

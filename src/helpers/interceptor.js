@@ -5,7 +5,7 @@ axios.interceptors.request.use(
     function (config) {
         //TODO: Päscu fragen was hier best practice
         if(!config.url.includes("/transport.opendata.ch")){
-            config.headers = {...config.headers, "x-access-token": getToken()}
+            config.headers = {...config.headers, 'x-access-token': getToken()}
         }
         return config;
     },
