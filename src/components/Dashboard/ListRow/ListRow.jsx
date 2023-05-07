@@ -26,9 +26,12 @@ export function ListRow({from, to}) {
                     <div className="accordion-body">
                         {
                             availableConnections.map((connection, index) =>
-                                <Connection
-                                    connection={connection}
-                                    key={index}/>
+                                <div className="accordion" id="accordionDepartures" key={"accordion" + index}>
+                                    <Connection
+                                        connection={connection}
+                                        index={index}
+                                        key={index}/>
+                                </div>
                             )
                         }
                     </div>
