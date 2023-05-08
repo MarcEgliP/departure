@@ -23,12 +23,15 @@ export function SelectDropdown({onOptionSelect}) {
         setSelectedOption(value);
         onOptionSelect(value)
     }
+    const handleMenuOpened = () => {
+        changeOptions(selectedOption?.value || "a")
+    }
 
     return (
         <>
             <Select
-                defaultOptions={()=>changeOptions()}
                 selectedOption={selectedOption}
+                onMenuOpen={handleMenuOpened}
                 onInputChange={changeOptions}
                 onChange={handleSelect}
                 options={options}
