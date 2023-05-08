@@ -4,12 +4,14 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import {useEffect, useState} from "react";
 import {retrieveFavorites} from "./dashboard-service";
 import {getPersonalInformation} from "../../helpers/storage";
-import {Navigate} from "react-router-dom";
+import {Navigate, useSearchParams} from "react-router-dom";
 import {ConnectionSearch} from "./ConnectionSearch/ConnectionSearch";
 import "./Dashboard.css"
 
 export function Dashboard({isLoggedIn}) {
     const [favorites, setFavorites] = useState([]);
+    const [searchParams, setSearchParams] = useSearchParams();
+
     useEffect(() => {
         retrieveFavorites().then((response) => {
             setFavorites(response.data);
@@ -29,6 +31,8 @@ export function Dashboard({isLoggedIn}) {
                     <div className="accordion mx-5 mb-5 overflow-auto fav-container" id="accordionConnections">
                         {
                             favorites.map((favorite => <ListRow
+                                searchParams={searchParams}
+                                setSearchParams={setSearchParams}
                                 from={favorite.from}
                                 to={favorite.to}
                                 key={favorite.id}/>))
