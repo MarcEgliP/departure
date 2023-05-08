@@ -3,6 +3,8 @@ import {retrieveConnections, retrieveConnectionsOfTomorrow} from "./list-row-ser
 import {Connection} from "./Connection/Connection";
 import {BsArrowRight} from "react-icons/bs";
 
+import PropTypes from "prop-types";
+
 export function ListRow({from, to, searchParams, setSearchParams}) {
     const [availableConnections, setAvailableConnections] = useState([]);
     const [showDataOfTomorrow, setShowDataOfTomorrow] = useState(false);
@@ -42,7 +44,6 @@ export function ListRow({from, to, searchParams, setSearchParams}) {
 
         // return () => clearInterval(interval);
     }, []);
-
     return (
         <>
             <div className="accordion-item w-75">
@@ -81,3 +82,8 @@ export function ListRow({from, to, searchParams, setSearchParams}) {
         </>
     );
 }
+
+ListRow.propTypes = {
+    from: PropTypes.any,
+    to: PropTypes.any
+};

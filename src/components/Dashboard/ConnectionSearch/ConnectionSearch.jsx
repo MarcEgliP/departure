@@ -1,12 +1,13 @@
 import "bootstrap-icons/font/bootstrap-icons.css";
 import {SelectDropdown} from "./SelectDropdown/SelectDropdown";
-import {useState} from "react";
+import React, {useState} from "react";
 import {findConnections, saveFavouriteCall} from "./ConnectionsSearch.service";
 import {Spinner} from "react-bootstrap";
 import "./ConnectionsSearch.css";
 import {BsArrowRight, BsFillStarFill, BsStar} from "react-icons/bs";
 import {retrieveFavorites} from "../dashboard-service";
 import {SearchResult} from "./SearchResult/SearchResult";
+
 
 export function ConnectionSearch() {
     const [stations, setStations] = useState([]);
@@ -74,9 +75,9 @@ export function ConnectionSearch() {
                             <Spinner animation="border" className="s-7em mt-5"/>
                         </div> :
                         connections.map((connection, index) =>
-                            <div className="accordion" id="searchAccordion">
-                                <SearchResult connection={connection} index={index}/>
-                            </div>)
+                            <div className="accordion" id="searchAccordion" key={index}>
+                            <SearchResult connection={connection} index={index}></SearchResult>
+                        </div>)
                     }
                 </div>
             </div>

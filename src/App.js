@@ -4,7 +4,7 @@ import {Dashboard} from "./components/Dashboard/Dashboard";
 import {Login} from "./components/Login/Login";
 import "./helpers/interceptor.js"
 import {tokenIsPresent} from "./helpers/storage";
-import {useState} from "react";
+import React, {useState} from "react";
 
 function App() {
     const [isLoggedIn, setIsLoggedIn] = useState(tokenIsPresent());
