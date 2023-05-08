@@ -29,7 +29,8 @@ export function Connection({connection, index}) {
                             <p><b>{t("starting_station", {keyPrefix: "station"})}</b>{connection.from.station.name}</p>
                             <p><b>Verspätung  : </b>{connection.from.delay + " Minuten"}</p>
                             <p>
-                                <b>{t("departure_in", {keyPrefix: "connections"})}</b>{moment(connection.from.departure).fromNow("hh:mm:ss")}
+                                <b>{t("departure_in", {keyPrefix: "connections"})}</b>{moment(connection.from.departure)
+                                .local('de').fromNow("hh:mm:ss")}
                             </p>
                         </div>
                         <div className="w-50">

@@ -1,6 +1,7 @@
 import "bootstrap-icons/font/bootstrap-icons.css";
 import {BsArrowRight} from "react-icons/bs";
 import moment from "moment/moment";
+import 'moment/locale/de';
 import {useTranslation} from "react-i18next";
 
 export function SearchResult({connection, index}) {
@@ -43,7 +44,7 @@ export function SearchResult({connection, index}) {
                             </div>
                             <div className="d-flex flex-row">
                                 <b className="me-3">{t("departure_in", {keyPrefix: "connections"})}</b>
-                                {moment(connection.from.departure).fromNow()}
+                                {moment(connection.from.departure).local('de').fromNow()}
                             </div>
                         </div>
                     </div>
