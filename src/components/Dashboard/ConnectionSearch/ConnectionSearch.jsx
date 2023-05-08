@@ -9,7 +9,6 @@ import {retrieveFavorites} from "../dashboard-service";
 import {SearchResult} from "./SearchResult/SearchResult";
 
 
-
 export function ConnectionSearch() {
     const [stations, setStations] = useState([]);
     const [connections, setConnections] = useState([]);
@@ -76,9 +75,9 @@ export function ConnectionSearch() {
                             <Spinner animation="border" className="s-7em mt-5"/>
                         </div> :
                         connections.map((connection, index) =>
-                            <div className="accordion" id="searchAccordion">
-                                <SearchResult connection={connection} index={index}/>
-                            </div>)
+                            <div className="accordion" id="searchAccordion" key={index}>
+                            <SearchResult connection={connection} index={index}></SearchResult>
+                        </div>)
                     }
                 </div>
             </div>
