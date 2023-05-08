@@ -1,0 +1,29 @@
+{
+  "welcome_texts": {
+    "hello": "Hallo"
+  },
+  "connections": {
+    "connection":  "Verbindung",
+    "saved_connections": "Gespeicherte Verbindungen",
+    "departure_in": "Abfahrt in: ",
+    "status": "Status: ",
+    "platform": "Plattform: ",
+    "delay": "Verspätung",
+    "no_delay": "Keine Verspätung"
+  },
+  "search": {
+    "search_connection": "Verbindung suchen",
+    "from": "Von: ",
+    "to": "Nach: "
+  },
+  "time": {
+    "today": "Heute",
+    "tomorrow": "Morgen"
+  },
+  "station": {
+    "starting_station": "Startstation: ",
+    "ending_station": "Endstation: ",
+    "departure": "Abfahrtszeit: ",
+    "arrival": "Ankunftszeit: "
+  }
+}

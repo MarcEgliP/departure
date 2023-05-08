@@ -8,12 +8,14 @@ import {Navigate, useSearchParams} from "react-router-dom";
 import {Modal} from "./Modal/Modal";
 import {ConnectionSearch} from "./ConnectionSearch/ConnectionSearch";
 import "./Dashboard.css"
+import {useTranslation} from "react-i18next";
 import PropTypes from "prop-types";
 
 export function Dashboard({isLoggedIn}) {
     const [favorites, setFavorites] = useState([]);
     const [deleteId, setDeleteId] = useState(0);
     const [searchParams, setSearchParams] = useSearchParams();
+    const { t } = useTranslation();
 
     useEffect(() => {
         retrieveFavorites().then((response) => {
@@ -34,8 +36,8 @@ export function Dashboard({isLoggedIn}) {
                    deleteId={deleteId}/>
             <div className={"d-flex flex-row"}>
                 <div className={"col-6"}>
-                    <h1 className={"display-3 m-5"}>Hallo {getPersonalInformation().firstName}</h1>
-                    <h3 className={"display-4 mx-5"}>Gespeicherte Verbindungen</h3>
+                    <h1 className={"display-3 m-5"}>{t("hello", { keyPrefix: 'welcome_texts' })} {getPersonalInformation().firstName}</h1>
+                    <h3 className={"display-4 mx-5"}>{t("saved_connections", {keyPrefix: 'connections'})}</h3>
                     <div className="accordion mx-5 mb-5 overflow-auto fav-container" id="accordionConnections">
                         {
                             favorites.map((favorite, index) =>

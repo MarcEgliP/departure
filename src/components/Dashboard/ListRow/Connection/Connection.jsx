@@ -1,6 +1,8 @@
 import moment from "moment";
+import {useTranslation} from "react-i18next";
 
 export function Connection({connection, index}) {
+    const { t } = useTranslation();
 
     return (
         <>
@@ -10,7 +12,7 @@ export function Connection({connection, index}) {
                             data-bs-target={"#departure" + index}>
                         <div className="d-flex flex-row">
                             <div className="fs-3 w-100 d-flex flex-row">
-                                <b className="d-flex">Verbindung: </b>
+                                <b className="d-flex">{t("connection", {keyPrefix: "connections"})} </b>
                                 <i className="bi bi-clock ms-3">
                                     <i className="ms-3">
                                         {moment(connection.from.departure).format("hh:mm:ss")}
@@ -24,24 +26,24 @@ export function Connection({connection, index}) {
                      data-bs-parent="#accordionDepartures">
                     <div className="accordion-body d-flex flex-row fs-5">
                         <div className="w-50">
-                            <p><b>Startstation: </b>{connection.from.station.name}</p>
+                            <p><b>{t("starting_station", {keyPrefix: "station"})}</b>{connection.from.station.name}</p>
                             <p><b>Verspätung  : </b>{connection.from.delay + " Minuten"}</p>
                             <p>
-                                <b>Abfahrt in: </b>{moment(connection.from.departure).fromNow("hh:mm:ss")}
+                                <b>{t("departure_in", {keyPrefix: "connections"})}</b>{moment(connection.from.departure).fromNow("hh:mm:ss")}
                             </p>
                         </div>
                         <div className="w-50">
-                            <p><b>Endstation: </b>{connection.to.station.name}</p>
-                            <p><b>Status: </b>{connection.from.delay === 0 ?
+                            <p><b>{t("ending_station", {keyPrefix: "station"})}</b>{connection.to.station.name}</p>
+                            <p><b>{t("status", {keyPrefix: "connections"})}</b>{connection.from.delay === 0 ?
                                 <i className="bi bi-circle-fill mx-2 text-success">
-                                    <b className="mx-2 text-success">Keine Verspätung</b>
+                                    <b className="mx-2 text-success">{t("no_delay", {keyPrefix: "connections"})}</b>
                                 </i>
                                 :
                                 <i className="bi bi-circle-fill text-danger">
-                                    <b className="mx-2 text-danger">Verspätung</b>
+                                    <b className="mx-2 text-danger">{t("delay", {keyPrefix: "connections"})}</b>
                                 </i>
                             }</p>
-                            <p><b>Plattform: </b>{connection.from.platform}</p>
+                            <p><b>{t("platform", {keyPrefix: "connections"})}</b>{connection.from.platform}</p>
                         </div>
                     </div>
                 </div>
