@@ -35,15 +35,16 @@ export function Login({isLoggedIn, setIsLoggedIn}) {
         <div className="d-flex justify-content-center align-items-center flex-column vh-100">
             <p className="display-4">Sign in</p>
             <input type="email" className="form-control m-2 w-50 " id="exampleInputEmail1" aria-describedby="emailHelp"
+                   data-testid="input-email"
                    placeholder="Enter email" onChange={e => setEmail(e.target.value)}/>
             <input type="password" className="form-control m-2 w-50 " onChange={e => setPassword(e.target.value)}
-                   placeholder="Enter password"/>
-            <Button onClick={handleSubmit}>
+                   placeholder="Enter password" data-testid="input-password"/>
+            <Button onClick={handleSubmit} disabled={!email || !password} data-testid="submit">
                 Submit
             </Button>
             {
                 showError &&
-                <div className="alert alert-danger mt-5" role="alert">
+                <div className="alert alert-danger mt-5" role="alert" data-testid="error">
                     Email or password invalid
                 </div>
             }
