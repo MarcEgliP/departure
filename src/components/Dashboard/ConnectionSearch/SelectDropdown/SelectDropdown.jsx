@@ -2,9 +2,10 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import {useState} from "react";
 import Select from "react-select";
 import {searchOptions} from "./SelectDropdown.service";
+import "./SelectDropdown.css"
 
 
-export function SelectDropdown({onOptionSelect}) {
+export function SelectDropdown({onOptionSelect, placeholderTag}) {
     const [selectedOption, setSelectedOption] = useState(null);
     const [options, setOptions] = useState([]);
 
@@ -26,15 +27,18 @@ export function SelectDropdown({onOptionSelect}) {
     const handleMenuOpened = () => {
         changeOptions(selectedOption?.value || "a")
     }
-
     return (
+
         <>
             <Select
+                styles={{ control: (base) => ({ ...base, width: "20em", height: "3em"})}}
+                className="dropdown-size"
                 selectedOption={selectedOption}
                 onMenuOpen={handleMenuOpened}
                 onInputChange={changeOptions}
                 onChange={handleSelect}
                 options={options}
+                placeholder={placeholderTag}
             />
         </>
     );

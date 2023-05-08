@@ -1,4 +1,9 @@
-.s-7em{
+.s-7em {
     width: 7em !important;
     height: 7em !important;
+}
+
+.favIcon {
+    color: #e4d00a;
+    font-size: 2em;
 }
