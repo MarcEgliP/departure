@@ -32,7 +32,7 @@ export function Dashboard({isLoggedIn}) {
                    favorites={favorites}
                    deleteId={deleteId}/>
             <div className={"d-flex flex-row"}>
-                <div className={"col-6 border border-primary"}>
+                <div className={"col-6"}>
                     <h1 className={"display-3 m-5"}>Hallo {getPersonalInformation().firstName}</h1>
                     <h3 className={"display-4 mx-5"}>Gespeicherte Verbindungen</h3>
                     <div className="accordion mx-5 mb-5 overflow-auto fav-container" id="accordionConnections">
@@ -56,7 +56,10 @@ export function Dashboard({isLoggedIn}) {
                         }
                     </div>
                 </div>
-                <div className="col-6 border border-danger">
+                <div className="d-flex">
+                    <div className="vr"></div>
+                </div>
+                <div className="col-6">
                     <ConnectionSearch/>
                 </div>
             </div>

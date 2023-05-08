@@ -50,33 +50,35 @@ export function ConnectionSearch() {
 
     return (
         <>
-            <div className="d-flex align-items-center flex-column m-5">
-                <p className="lead display-6">Search connection</p>
-                <div className="d-flex gap-4 justify-content-center align-items-center w-100">
-                    <SelectDropdown onOptionSelect={(value) => handleSelect(value, 0)}
-                                    placeholderTag="From"></SelectDropdown>
-                    <BsArrowRight className="display-6"></BsArrowRight>
-                    <SelectDropdown onOptionSelect={(value) => handleSelect(value, 1)}
-                                    placeholderTag="To"></SelectDropdown>
-                    <div onClick={toggleFavourite}>
+            <div className="d-flex flex-column align-items-center">
+                <div className="d-flex align-items-center flex-column m-5">
+                    <p className="lead display-6">Search connection</p>
+                    <div className="d-flex gap-4 justify-content-center align-items-center w-100">
+                        <SelectDropdown onOptionSelect={(value) => handleSelect(value, 0)}
+                                        placeholderTag="From"></SelectDropdown>
+                        <BsArrowRight className="display-6 mt-3"></BsArrowRight>
+                        <SelectDropdown onOptionSelect={(value) => handleSelect(value, 1)}
+                                        placeholderTag="To"></SelectDropdown>
+                        <div className="d-flex mt-3 align-items-center" onClick={toggleFavourite}>
                             {
                                 favorite ?
                                     <BsFillStarFill className="favIcon"></BsFillStarFill> :
                                     <BsStar className="favIcon starIcon"></BsStar>
                             }
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div className="mt-5">
-                {isLoading ?
-                    <div className="d-flex justify-content-center align-items-center h-100">
-                        <Spinner animation="border" className="s-7em mt-5"/>
-                    </div> :
-                    connections.map((connection, index) =>
-                        <div className="accordion" id="searchAccordion">
-                            <SearchResult connection={connection} index={index}/>
-                        </div>)
-                }
+                <div className="d-flex justify-content-center flex-column mt-5 w-75">
+                    {isLoading ?
+                        <div className="d-flex justify-content-center align-items-center h-100">
+                            <Spinner animation="border" className="s-7em mt-5"/>
+                        </div> :
+                        connections.map((connection, index) =>
+                            <div className="accordion" id="searchAccordion">
+                                <SearchResult connection={connection} index={index}/>
+                            </div>)
+                    }
+                </div>
             </div>
         </>
     );
