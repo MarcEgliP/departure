@@ -29,7 +29,7 @@ export function Connection({connection, index}) {
                     <div className="accordion-body d-flex flex-row fs-5">
                         <div className="w-50">
                             <p><b>{t("starting_station", {keyPrefix: "station"})}</b>{connection.from.station.name}</p>
-                            <p><b>Verspätung  : </b>{connection.from.delay ? connection.from.delay + t("minutes", {keyPrefix: "time"})
+                            <p><b>{t("delay", {keyPrefix: "connections"})} </b>{connection.from.delay ? connection.from.delay + " " + t("minutes", {keyPrefix: "time"})
                                 : t("undefined", {keyPrefix: "time"})}</p>
                             <p>
                                 <b>{t("departure_in", {keyPrefix: "connections"})}</b>{moment(connection.from.departure)
@@ -40,14 +40,14 @@ export function Connection({connection, index}) {
                             <p><b>{t("ending_station", {keyPrefix: "station"})}</b>{connection.to.station.name}</p>
                             <p><b>{t("status", {keyPrefix: "connections"})}</b>
                                 {
-                                    connection.from.delay != null ?
+                                    connection.from.delay !== null ?
                                         connection.from.delay === 0 ?
                                                 <i className="bi bi-circle-fill mx-2 text-success">
                                                     <b className="mx-2 text-success">{t("no_delay", {keyPrefix: "connections"})}</b>
                                                 </i>
                                                 :
                                                 <i className="bi bi-circle-fill text-danger">
-                                                    <b className="mx-2 text-danger">{t("delay", {keyPrefix: "connections"})}</b>
+                                                    <b className="mx-2 text-danger">{t("status_delay", {keyPrefix: "connections"})}</b>
                                                 </i>
                                         :
                                         <i className="bi bi-circle-fill mx-2">

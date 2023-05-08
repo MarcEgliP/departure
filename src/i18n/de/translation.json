@@ -8,7 +8,8 @@
     "departure_in": "Abfahrt in: ",
     "status": "Status: ",
     "platform": "Plattform: ",
-    "delay": "Verspätung",
+    "status_delay": "Verspätung",
+    "delay": "Verspätung: ",
     "no_delay": "Keine Verspätung",
     "no_data": "Keine"
   },
