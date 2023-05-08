@@ -39,13 +39,13 @@ export function ConnectionSearch() {
     const toggleFavourite = () => {
         if (stations.length < 2) return;
         const stationsNames = stations.map(e => e.value)
-        if (favorite) {
-            saveFavouriteCall(stationsNames[0], stationsNames[stations.length - 1])
-            setFavorite(true)
-        } else {
+
+        if (!favorite) {
             //TODO call to delete
-            setFavorite(false)
+        } else {
+            saveFavouriteCall(stationsNames[0], stationsNames[stations.length - 1])
         }
+        setFavorite(!favorite)
     }
 
     return (
@@ -58,13 +58,13 @@ export function ConnectionSearch() {
                     <BsArrowRight className="display-6"></BsArrowRight>
                     <SelectDropdown onOptionSelect={(value) => handleSelect(value, 1)}
                                     placeholderTag="To"></SelectDropdown>
-                    <span onClick={toggleFavourite}>
+                    <div onClick={toggleFavourite}>
                             {
                                 favorite ?
                                     <BsFillStarFill className="favIcon"></BsFillStarFill> :
                                     <BsStar className="favIcon"></BsStar>
                             }
-                    </span>
+                    </div>
                 </div>
             </div>
             <div>
