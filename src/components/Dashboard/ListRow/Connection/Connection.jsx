@@ -29,7 +29,8 @@ export function Connection({connection, index}) {
                     <div className="accordion-body d-flex flex-row fs-5">
                         <div className="w-50">
                             <p><b>{t("starting_station", {keyPrefix: "station"})}</b>{connection.from.station.name}</p>
-                            <p><b>Verspätung  : </b>{connection.from.delay + " Minuten"}</p>
+                            <p><b>Verspätung  : </b>{connection.from.delay ? connection.from.delay + t("minutes", {keyPrefix: "time"})
+                                : t("undefined", {keyPrefix: "time"})}</p>
                             <p>
                                 <b>{t("departure_in", {keyPrefix: "connections"})}</b>{moment(connection.from.departure)
                                 .local('de').fromNow("hh:mm:ss")}
@@ -37,15 +38,23 @@ export function Connection({connection, index}) {
                         </div>
                         <div className="w-50">
                             <p><b>{t("ending_station", {keyPrefix: "station"})}</b>{connection.to.station.name}</p>
-                            <p><b>{t("status", {keyPrefix: "connections"})}</b>{connection.from.delay === 0 ?
-                                <i className="bi bi-circle-fill mx-2 text-success">
-                                    <b className="mx-2 text-success">{t("no_delay", {keyPrefix: "connections"})}</b>
-                                </i>
-                                :
-                                <i className="bi bi-circle-fill text-danger">
-                                    <b className="mx-2 text-danger">{t("delay", {keyPrefix: "connections"})}</b>
-                                </i>
-                            }</p>
+                            <p><b>{t("status", {keyPrefix: "connections"})}</b>
+                                {
+                                    connection.from.delay != null ?
+                                        connection.from.delay === 0 ?
+                                                <i className="bi bi-circle-fill mx-2 text-success">
+                                                    <b className="mx-2 text-success">{t("no_delay", {keyPrefix: "connections"})}</b>
+                                                </i>
+                                                :
+                                                <i className="bi bi-circle-fill text-danger">
+                                                    <b className="mx-2 text-danger">{t("delay", {keyPrefix: "connections"})}</b>
+                                                </i>
+                                        :
+                                        <i className="bi bi-circle-fill mx-2">
+                                            <b className="mx-2">{t("no_data", {keyPrefix: "connections"})}</b>
+                                        </i>
+                                }
+                            </p>
                             <p><b>{t("platform", {keyPrefix: "connections"})}</b>{connection.from.platform}</p>
                         </div>
                     </div>

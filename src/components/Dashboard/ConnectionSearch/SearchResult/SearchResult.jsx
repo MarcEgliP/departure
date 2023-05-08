@@ -43,7 +43,8 @@ export function SearchResult({connection, index}) {
                         <div className="d-flex flex-column w-50 fs-4">
                             <div className="d-flex flex-row">
                                 <b className="me-3">{t("platform", {keyPrefix: "connections"})} </b>
-                                {connection.from.platform ? connection.from.platform : "undefiniert"}
+                                {connection.from.platform ? connection.from.platform :
+                                    t("undefined", {keyPrefix: "time"})}
                             </div>
                             <div className="d-flex flex-row">
                                 <b className="me-3">{t("departure_in", {keyPrefix: "connections"})}</b>
