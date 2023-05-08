@@ -1,4 +1,3 @@
-import {Button} from "react-bootstrap";
 import './Login.css';
 import React, {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
@@ -40,9 +39,9 @@ export function Login({isLoggedIn, setIsLoggedIn}) {
                    placeholder={t("email", {keyPrefix: "form"})} onChange={e => setEmail(e.target.value)}/>
             <input type="password" className="form-control m-2 w-50 " onChange={e => setPassword(e.target.value)}
                    placeholder={t("password", {keyPrefix: "form"})} data-testid="input-password"/>
-            <Button onClick={handleSubmit} disabled={!email || !password} data-testid="submit">
+            <button onClick={handleSubmit} disabled={!email || !password} data-testid="submit" className="btn btn-outline-primary">
                 Submit
-            </Button>
+            </button>
             {
                 showError &&
                 <div className="alert alert-danger mt-5" role="alert" data-testid="error">

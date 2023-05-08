@@ -3,7 +3,7 @@
     "hello": "Hallo"
   },
   "connections": {
-    "connection":  "Verbindung",
+    "connection": "Verbindung",
     "saved_connections": "Gespeicherte Verbindungen",
     "departure_in": "Abfahrt in: ",
     "status": "Status: ",
@@ -33,5 +33,8 @@
     "password": "Passwort eingeben",
     "email": "Email eingeben",
     "login": "Einloggen"
+  },
+  "nav": {
+    "logOut": "Ausloggen"
   }
 }

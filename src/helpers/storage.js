@@ -6,7 +6,9 @@ export function processLoginResponse(loginResponse) {
 export function setToken(userToken) {
     sessionStorage.setItem('x-access-token', userToken);
 }
-
+export function clearToken() {
+    sessionStorage.removeItem('x-access-token');
+}
 export function getToken() {
     return sessionStorage.getItem('x-access-token');
 }

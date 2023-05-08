@@ -3,7 +3,6 @@ import {getToken} from "./storage";
 import history from "./history"
 axios.interceptors.request.use(
     function (config) {
-        //TODO: Päscu fragen was hier best practice
         if(!config.url.includes("/transport.opendata.ch")){
             config.headers = {...config.headers, 'x-access-token': getToken()}
         }
