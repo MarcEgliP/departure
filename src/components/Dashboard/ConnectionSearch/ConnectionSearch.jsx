@@ -2,11 +2,11 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import {SelectDropdown} from "./SelectDropdown/SelectDropdown";
 import {useState} from "react";
 import {findConnections, saveFavouriteCall} from "./ConnectionsSearch.service";
-import {ListRow} from "../ListRow/ListRow";
 import {Spinner} from "react-bootstrap";
 import "./ConnectionsSearch.css";
 import {BsArrowRight, BsFillStarFill, BsStar} from "react-icons/bs";
 import {retrieveFavorites} from "../dashboard-service";
+import {SearchResult} from "./SearchResult/SearchResult";
 
 export function ConnectionSearch() {
     const [stations, setStations] = useState([]);
@@ -50,7 +50,7 @@ export function ConnectionSearch() {
 
     return (
         <>
-            <div className="d-flex align-items-center flex-column ">
+            <div className="d-flex align-items-center flex-column m-5">
                 <p className="lead display-6">Search connection</p>
                 <div className="d-flex gap-4 justify-content-center align-items-center w-100">
                     <SelectDropdown onOptionSelect={(value) => handleSelect(value, 0)}
@@ -62,20 +62,20 @@ export function ConnectionSearch() {
                             {
                                 favorite ?
                                     <BsFillStarFill className="favIcon"></BsFillStarFill> :
-                                    <BsStar className="favIcon"></BsStar>
+                                    <BsStar className="favIcon starIcon"></BsStar>
                             }
                     </div>
                 </div>
             </div>
-            <div>
+            <div className="mt-5">
                 {isLoading ?
                     <div className="d-flex justify-content-center align-items-center h-100">
                         <Spinner animation="border" className="s-7em mt-5"/>
                     </div> :
-                    connections.map((connection, index) => <ListRow
-                        from={connection.from.station.name}
-                        to={connection.to.station.name}
-                        key={index}></ListRow>)
+                    connections.map((connection, index) =>
+                        <div className="accordion" id="searchAccordion">
+                            <SearchResult connection={connection} index={index}/>
+                        </div>)
                 }
             </div>
         </>

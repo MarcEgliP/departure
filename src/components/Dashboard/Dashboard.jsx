@@ -57,7 +57,7 @@ export function Dashboard({isLoggedIn}) {
                     </div>
                 </div>
                 <div className="col-6 border border-danger">
-                    <ConnectionSearch></ConnectionSearch>
+                    <ConnectionSearch/>
                 </div>
             </div>
         </>

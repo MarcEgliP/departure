@@ -41,6 +41,7 @@ export function Connection({connection, index}) {
                                     <b className="mx-2 text-danger">Verspätung</b>
                                 </i>
                             }</p>
+                            <p><b>Plattform: </b>{connection.from.platform}</p>
                         </div>
                     </div>
                 </div>
