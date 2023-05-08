@@ -31,7 +31,7 @@ export function ListRow({from, to, searchParams, setSearchParams}) {
                 <h2 className="accordion-header" id="headingOne">
                     <button onClick={insertQueryParams} className="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target={"#" + from + to}>
-                        {from} -> {to}
+                        <h1>{from} -> {to}</h1>
                     </button>
                 </h2>
                 <div id={from + to}
