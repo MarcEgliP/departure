@@ -3,7 +3,7 @@ import React, {useState} from "react";
 import Select from "react-select";
 import {searchOptions} from "./SelectDropdown.service";
 import "./SelectDropdown.css"
-
+import PropTypes from "prop-types";
 
 export function SelectDropdown({onOptionSelect, placeholderTag}) {
     const [selectedOption, setSelectedOption] = useState(null);
@@ -43,3 +43,8 @@ export function SelectDropdown({onOptionSelect, placeholderTag}) {
         </>
     );
 }
+
+SelectDropdown.propTypes = {
+    placeholderTag: PropTypes.string,
+    onOptionSelect: PropTypes.func
+};

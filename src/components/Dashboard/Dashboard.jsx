@@ -8,6 +8,7 @@ import {Navigate, useSearchParams} from "react-router-dom";
 import {Modal} from "./Modal/Modal";
 import {ConnectionSearch} from "./ConnectionSearch/ConnectionSearch";
 import "./Dashboard.css"
+import PropTypes from "prop-types";
 
 export function Dashboard({isLoggedIn}) {
     const [favorites, setFavorites] = useState([]);
@@ -66,3 +67,7 @@ export function Dashboard({isLoggedIn}) {
         </>
     );
 }
+
+Dashboard.propTypes = {
+    isLoggedIn: PropTypes.bool
+};

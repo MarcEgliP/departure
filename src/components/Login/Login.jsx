@@ -4,6 +4,8 @@ import React, {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {processLoginResponse} from "../../helpers/storage";
 import {retrieveToken} from "./login-service";
+import PropTypes from "prop-types";
+
 export function Login({isLoggedIn, setIsLoggedIn}) {
     const [email, setEmail] = useState("");
     const [showError, setShowError] = useState(false);
@@ -48,3 +50,8 @@ export function Login({isLoggedIn, setIsLoggedIn}) {
         </div>
     )
 }
+
+Login.propTypes = {
+    isLoggedIn: PropTypes.bool,
+    setIsLoggedIn: PropTypes.func
+};
