@@ -34,7 +34,7 @@ export function Login({isLoggedIn, setIsLoggedIn}) {
     }
     return (
         <div className="d-flex justify-content-center align-items-center flex-column vh-100">
-            <p className="display-4">{t("email", {keyPrefix: "form"})}</p>
+            <p className="display-4 text-blue">{t("email", {keyPrefix: "form"})}</p>
             <input type="email" className="form-control m-2 w-50 " id="exampleInputEmail1" aria-describedby="emailHelp"
                    data-testid="input-email"
                    placeholder={t("email", {keyPrefix: "form"})} onChange={e => setEmail(e.target.value)}/>
