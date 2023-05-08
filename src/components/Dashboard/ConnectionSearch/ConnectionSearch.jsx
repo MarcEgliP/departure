@@ -6,12 +6,13 @@ import {ListRow} from "../ListRow/ListRow";
 import {Spinner} from "react-bootstrap";
 import "./ConnectionsSearch.css";
 import {BsArrowRight, BsFillStarFill, BsStar} from "react-icons/bs";
+import {retrieveFavorites} from "../dashboard-service";
 
 export function ConnectionSearch() {
     const [stations, setStations] = useState([]);
     const [connections, setConnections] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
-    const [favourites, setFavourites] = useState(false);
+    const [favorite, setFavorite] = useState(false);
 
     const handleSelect = (value, pos) => {
         let nextStations = stations;
@@ -28,12 +29,23 @@ export function ConnectionSearch() {
             .then(result => result.data.connections)
             .then(connections => setConnections(connections))
             .finally(() => setIsLoading(false))
+
+        retrieveFavorites()
+            .then(e => e.data)
+            .then(e => e.map(fav => [fav.from, fav.to]))
+            .then(e => JSON.stringify(e))
+            .then(e => setFavorite(e.includes(JSON.stringify(stationsNames))));
     }
-    const saveFavorite = () => {
+    const toggleFavourite = () => {
         if (stations.length < 2) return;
         const stationsNames = stations.map(e => e.value)
-        saveFavouriteCall(stationsNames[0], stationsNames[stations.length - 1])
-        setFavourites(true)
+        if (favorite) {
+            saveFavouriteCall(stationsNames[0], stationsNames[stations.length - 1])
+            setFavorite(true)
+        } else {
+            //TODO call to delete
+            setFavorite(false)
+        }
     }
 
     return (
@@ -46,9 +58,9 @@ export function ConnectionSearch() {
                     <BsArrowRight className="display-6"></BsArrowRight>
                     <SelectDropdown onOptionSelect={(value) => handleSelect(value, 1)}
                                     placeholderTag="To"></SelectDropdown>
-                    <span onClick={saveFavorite}>
+                    <span onClick={toggleFavourite}>
                             {
-                                favourites ?
+                                favorite ?
                                     <BsFillStarFill className="favIcon"></BsFillStarFill> :
                                     <BsStar className="favIcon"></BsStar>
                             }
