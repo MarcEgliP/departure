@@ -4,14 +4,14 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {BrowserRouter} from "react-router-dom";
-
+import {unstable_HistoryRouter as HistoryRouter} from 'react-router-dom';
+import history from "./helpers/history";
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
-        <BrowserRouter>
+        <HistoryRouter history={history}>
             <App/>
-        </BrowserRouter>
+        </HistoryRouter>
     </React.StrictMode>
 );
 
