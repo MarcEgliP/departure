@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 import {retrieveConnections} from "./list-row-service";
 import {Connection} from "./Connection/Connection";
+import {MINUTE_IN_MILLISECONDS} from "../../../helpers/constants-library";
 
 export function ListRow({from, to, searchParams, setSearchParams}) {
     const [availableConnections, setAvailableConnections] = useState([]);
@@ -18,11 +19,20 @@ export function ListRow({from, to, searchParams, setSearchParams}) {
         setSearchParams({connection: ""});
     }
 
-    useEffect(() => {
+    function loadConnections() {
         retrieveConnections(from, to)
             .then((response) => {
                 setAvailableConnections(response.data.connections);
             });
+    }
+
+    useEffect(() => {
+        loadConnections();
+        const interval = setInterval(async () => {
+            loadConnections();
+        }, MINUTE_IN_MILLISECONDS);
+
+        return () => clearInterval(interval);
     }, []);
 
     return (
