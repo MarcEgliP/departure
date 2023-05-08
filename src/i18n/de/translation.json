@@ -25,5 +25,12 @@
     "ending_station": "Endstation: ",
     "departure": "Abfahrtszeit: ",
     "arrival": "Ankunftszeit: "
+  },
+  "alerts": {
+    "credentials_error": "Email oder Password invalid"
+  },
+  "form": {
+    "password": "Passwort eingeben",
+    "email": "Email eingeben"
   }
 }
