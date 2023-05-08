@@ -5,6 +5,7 @@ import {useEffect, useState} from "react";
 import {retrieveFavorites} from "./dashboard-service";
 import {getPersonalInformation} from "../../helpers/storage";
 import {Navigate} from "react-router-dom";
+import {ConnectionSearch} from "./ConnectionSearch/ConnectionSearch";
 
 export function Dashboard({isLoggedIn}) {
     const [favorites, setFavorites] = useState([]);
@@ -31,8 +32,8 @@ export function Dashboard({isLoggedIn}) {
                             key={favorite.id}/>))
                     }
                 </div>
-                <div className={"col-6 border border-danger"}>
-
+                <div className="col-6 border border-danger">
+                    <ConnectionSearch></ConnectionSearch>
                 </div>
             </div>
         </>
