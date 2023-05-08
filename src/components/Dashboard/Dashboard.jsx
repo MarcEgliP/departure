@@ -63,7 +63,7 @@ export function Dashboard({isLoggedIn}) {
                     <div className="vr"></div>
                 </div>
                 <div className="col-6">
-                    <ConnectionSearch/>
+                    <ConnectionSearch setFavorites={setFavorites} />
                 </div>
             </div>
         </>

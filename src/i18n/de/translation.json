@@ -9,7 +9,8 @@
     "status": "Status: ",
     "platform": "Plattform: ",
     "delay": "Verspätung",
-    "no_delay": "Keine Verspätung"
+    "no_delay": "Keine Verspätung",
+    "no_data": "Keine"
   },
   "search": {
     "search_connection": "Verbindung suchen",
@@ -18,7 +19,9 @@
   },
   "time": {
     "today": "Heute",
-    "tomorrow": "Morgen"
+    "tomorrow": "Morgen",
+    "minutes": "Minuten",
+    "undefined": "Keine"
   },
   "station": {
     "starting_station": "Startstation: ",
