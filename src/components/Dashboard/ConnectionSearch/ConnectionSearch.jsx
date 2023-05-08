@@ -7,6 +7,7 @@ import "./ConnectionsSearch.css";
 import {BsArrowRight, BsFillStarFill, BsStar} from "react-icons/bs";
 import {deleteFavorite, retrieveFavorites} from "../dashboard-service";
 import {SearchResult} from "./SearchResult/SearchResult";
+import {useTranslation} from "react-i18next";
 
 
 export function ConnectionSearch() {
@@ -14,6 +15,7 @@ export function ConnectionSearch() {
     const [connections, setConnections] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [favorite, setFavorite] = useState(-1);
+    const { t } = useTranslation();
 
     const handleSelect = (value, pos) => {
         let nextStations = stations;
@@ -58,13 +60,13 @@ export function ConnectionSearch() {
         <>
             <div className="d-flex flex-column align-items-center">
                 <div className="d-flex align-items-center flex-column m-5">
-                    <p className="lead display-6">Search connection</p>
+                    <p className="lead display-6">{t("search_connection", {keyPrefix: "search"})}</p>
                     <div className="d-flex gap-4 justify-content-center align-items-center w-100">
                         <SelectDropdown onOptionSelect={(value) => handleSelect(value, 0)}
-                                        placeholderTag="From"></SelectDropdown>
+                                        placeholderTag={t("from", {keyPrefix: "search"})}></SelectDropdown>
                         <BsArrowRight className="display-6 mt-3"></BsArrowRight>
                         <SelectDropdown onOptionSelect={(value) => handleSelect(value, 1)}
-                                        placeholderTag="To"></SelectDropdown>
+                                        placeholderTag={t("to", {keyPrefix: "search"})}></SelectDropdown>
                         <div className="d-flex mt-3 align-items-center" onClick={toggleFavourite}>
                             {
                                 favorite !== -1 ?
