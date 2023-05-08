@@ -5,7 +5,7 @@ import {findConnections, saveFavouriteCall} from "./ConnectionsSearch.service";
 import {Spinner} from "react-bootstrap";
 import "./ConnectionsSearch.css";
 import {BsArrowRight, BsFillStarFill, BsStar} from "react-icons/bs";
-import {retrieveFavorites} from "../dashboard-service";
+import {deleteFavorite, retrieveFavorites} from "../dashboard-service";
 import {SearchResult} from "./SearchResult/SearchResult";
 
 
@@ -13,7 +13,7 @@ export function ConnectionSearch() {
     const [stations, setStations] = useState([]);
     const [connections, setConnections] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
-    const [favorite, setFavorite] = useState(false);
+    const [favorite, setFavorite] = useState(-1);
 
     const handleSelect = (value, pos) => {
         let nextStations = stations;
@@ -31,22 +31,27 @@ export function ConnectionSearch() {
             .then(connections => setConnections(connections))
             .finally(() => setIsLoading(false))
 
-        retrieveFavorites()
-            .then(e => e.data)
-            .then(e => e.map(fav => [fav.from, fav.to]))
-            .then(e => JSON.stringify(e))
-            .then(e => setFavorite(e.includes(JSON.stringify(stationsNames))));
+        setFavoriteValue()
     }
     const toggleFavourite = () => {
         if (stations.length < 2) return;
         const stationsNames = stations.map(e => e.value)
-
-        if (!favorite) {
-            //TODO call to delete
+        if (favorite !== -1) {
+            deleteFavorite(favorite)
+            setFavorite(-1)
         } else {
             saveFavouriteCall(stationsNames[0], stationsNames[stations.length - 1])
+                .then(() => setFavoriteValue())
         }
-        setFavorite(!favorite)
+    }
+    const setFavoriteValue = () => {
+        const stationsNames = stations.map(e => e.value)
+        retrieveFavorites()
+            .then(e => e.data)
+            .then(e => e.filter(s =>
+                s.from === stationsNames[0] && s.to === stationsNames[1]
+            ))
+            .then(e => setFavorite(e.length > 0 ? e[0].id : -1))
     }
 
     return (
@@ -62,7 +67,7 @@ export function ConnectionSearch() {
                                         placeholderTag="To"></SelectDropdown>
                         <div className="d-flex mt-3 align-items-center" onClick={toggleFavourite}>
                             {
-                                favorite ?
+                                favorite !== -1 ?
                                     <BsFillStarFill className="favIcon"></BsFillStarFill> :
                                     <BsStar className="favIcon starIcon"></BsStar>
                             }
@@ -76,8 +81,8 @@ export function ConnectionSearch() {
                         </div> :
                         connections.map((connection, index) =>
                             <div className="accordion" id="searchAccordion" key={index}>
-                            <SearchResult connection={connection} index={index}></SearchResult>
-                        </div>)
+                                <SearchResult connection={connection} index={index}></SearchResult>
+                            </div>)
                     }
                 </div>
             </div>
