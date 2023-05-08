@@ -27,9 +27,9 @@ export function ListRow({from, to, searchParams, setSearchParams}) {
 
     return (
         <>
-            <div className="accordion-item w-75" onClick={insertQueryParams}>
+            <div className="accordion-item w-75">
                 <h2 className="accordion-header" id="headingOne">
-                    <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    <button onClick={insertQueryParams} className="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target={"#" + from + to}>
                         {from} -> {to}
                     </button>
