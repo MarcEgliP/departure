@@ -4,6 +4,7 @@ import {Connection} from "./Connection/Connection";
 import {BsArrowRight} from "react-icons/bs";
 import {MINUTE_IN_MILLISECONDS} from "../../../helpers/constants-library";
 import {useTranslation} from "react-i18next";
+import PropTypes from "prop-types";
 
 export function ListRow({from, to, searchParams, setSearchParams}) {
     const [availableConnections, setAvailableConnections] = useState([]);

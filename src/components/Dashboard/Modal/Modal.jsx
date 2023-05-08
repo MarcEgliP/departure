@@ -1,5 +1,7 @@
 import "bootstrap-icons/font/bootstrap-icons.css";
 import {deleteFavorite} from "../dashboard-service";
+import React from "react";
+
 
 export function Modal({textToPresent, modalTitle, setFavorites, favorites, deleteId}) {
     function deleteFavoriteInList() {

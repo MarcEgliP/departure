@@ -3,6 +3,9 @@ import {BsArrowRight} from "react-icons/bs";
 import moment from "moment/moment";
 import 'moment/locale/de';
 import {useTranslation} from "react-i18next";
+import PropTypes from "prop-types";
+import {Login} from "../../../Login/Login";
+import React from "react";
 
 export function SearchResult({connection, index}) {
     const { t } = useTranslation();
@@ -53,3 +56,13 @@ export function SearchResult({connection, index}) {
         </>
     );
 }
+Login.propTypes = {
+    index: PropTypes.any,
+    connection: PropTypes.shape({
+        from: PropTypes.shape({
+            departure: PropTypes.any
+        }),
+        to: PropTypes.any,
+    }),
+
+};

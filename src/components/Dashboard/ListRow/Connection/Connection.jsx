@@ -1,5 +1,7 @@
 import moment from "moment";
 import {useTranslation} from "react-i18next";
+import React from "react";
+
 
 export function Connection({connection, index}) {
     const { t } = useTranslation();
