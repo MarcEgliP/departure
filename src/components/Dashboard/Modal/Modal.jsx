@@ -3,11 +3,12 @@ import {deleteFavorite} from "../dashboard-service";
 import React from "react";
 
 
-export function Modal({textToPresent, modalTitle, setFavorites, favorites, deleteId}) {
+export function Modal({textToPresent, modalTitle, setFavorites, favorites, favoriteId, setFavoriteId}) {
     function deleteFavoriteInList() {
-        deleteFavorite(deleteId);
-        const filteredArray = favorites.filter((favorite) => favorite.id !== deleteId);
+        deleteFavorite(favoriteId);
+        const filteredArray = favorites.filter((favorite) => favorite.id !== favoriteId);
         setFavorites(filteredArray);
+        setFavoriteId(-1);
     }
 
     return (

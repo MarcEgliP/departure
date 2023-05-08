@@ -10,11 +10,11 @@ import {SearchResult} from "./SearchResult/SearchResult";
 import {useTranslation} from "react-i18next";
 
 
-export function ConnectionSearch({setFavorites}) {
+export function ConnectionSearch({setFavorites, setFavorite, favorite}) {
     const [stations, setStations] = useState([]);
     const [connections, setConnections] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
-    const [favorite, setFavorite] = useState(-1);
+    // const [favorite, setFavorite] = useState(-1);
     const { t } = useTranslation();
 
     const handleSelect = (value, pos) => {

@@ -13,9 +13,9 @@ import PropTypes from "prop-types";
 
 export function Dashboard({isLoggedIn}) {
     const [favorites, setFavorites] = useState([]);
-    const [deleteId, setDeleteId] = useState(0);
     const [searchParams, setSearchParams] = useSearchParams();
-    const { t } = useTranslation();
+    const [favoriteId, setFavoriteId] = useState(-1);
+    const {t} = useTranslation();
 
     useEffect(() => {
         retrieveFavorites().then((response) => {
@@ -29,14 +29,15 @@ export function Dashboard({isLoggedIn}) {
     return (
         <>
             <Navbar/>
-            <Modal textToPresent={"Are you sure you want to delete this favorite?"}
-                   modalTitle={"Delete favorite"}
+            <Modal textToPresent={"Are you sure you want to delete this favoriteId?"}
+                   modalTitle={"Delete favoriteId"}
                    setFavorites={setFavorites}
                    favorites={favorites}
-                   deleteId={deleteId}/>
+                   favoriteId={favoriteId}
+                   setFavoriteId={setFavoriteId}/>
             <div className={"d-flex flex-row"}>
                 <div className={"col-6"}>
-                    <h1 className={"display-3 m-5"}>{t("hello", { keyPrefix: 'welcome_texts' })} {getPersonalInformation().firstName}</h1>
+                    <h1 className={"display-3 m-5"}>{t("hello", {keyPrefix: 'welcome_texts'})} {getPersonalInformation().firstName}</h1>
                     <h3 className={"display-4 mx-5"}>{t("saved_connections", {keyPrefix: 'connections'})}</h3>
                     <div className="accordion mx-5 mb-5 overflow-auto fav-container" id="accordionConnections">
                         {
@@ -52,7 +53,7 @@ export function Dashboard({isLoggedIn}) {
                                        data-bs-toggle="modal"
                                        data-bs-target="#staticBackdrop"
                                        key={"trashIcon" + index}
-                                       onClick={() => setDeleteId(favorite.id)}
+                                       onClick={() => setFavoriteId(favorite.id)}
                                     ></i>
                                 </div>
                             )
@@ -63,7 +64,7 @@ export function Dashboard({isLoggedIn}) {
                     <div className="vr"></div>
                 </div>
                 <div className="col-6">
-                    <ConnectionSearch setFavorites={setFavorites} />
+                    <ConnectionSearch setFavorites={setFavorites} setFavorite={setFavoriteId} favorite={favoriteId}/>
                 </div>
             </div>
         </>
