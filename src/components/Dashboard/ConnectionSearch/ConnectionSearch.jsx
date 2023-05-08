@@ -10,7 +10,7 @@ import {SearchResult} from "./SearchResult/SearchResult";
 import {useTranslation} from "react-i18next";
 
 
-export function ConnectionSearch() {
+export function ConnectionSearch({setFavorites}) {
     const [stations, setStations] = useState([]);
     const [connections, setConnections] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
@@ -35,15 +35,21 @@ export function ConnectionSearch() {
 
         setFavoriteValue()
     }
-    const toggleFavourite = () => {
+    const toggleFavourite = async () => {
         if (stations.length < 2) return;
         const stationsNames = stations.map(e => e.value)
         if (favorite !== -1) {
-            deleteFavorite(favorite)
+            await deleteFavorite(favorite);
+            retrieveFavorites().then((response) => {
+                setFavorites(response.data);
+            });
             setFavorite(-1)
         } else {
-            saveFavouriteCall(stationsNames[0], stationsNames[stations.length - 1])
-                .then(() => setFavoriteValue())
+            await saveFavouriteCall(stationsNames[0], stationsNames[stations.length - 1])
+                .then(() => setFavoriteValue());
+            retrieveFavorites().then((response) => {
+                setFavorites(response.data);
+            });
         }
     }
     const setFavoriteValue = () => {
