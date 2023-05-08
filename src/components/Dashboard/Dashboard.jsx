@@ -2,14 +2,16 @@ import {Navbar} from "../Navbar/Navbar";
 import {ListRow} from "./ListRow/ListRow";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import {useEffect, useState} from "react";
-import {deleteFavorite, retrieveFavorites} from "./dashboard-service";
+import {retrieveFavorites} from "./dashboard-service";
 import {getPersonalInformation} from "../../helpers/storage";
 import {Navigate, useSearchParams} from "react-router-dom";
+import {Modal} from "./Modal/Modal";
 import {ConnectionSearch} from "./ConnectionSearch/ConnectionSearch";
 import "./Dashboard.css"
 
 export function Dashboard({isLoggedIn}) {
     const [favorites, setFavorites] = useState([]);
+    const [deleteId, setDeleteId] = useState(0);
     const [searchParams, setSearchParams] = useSearchParams();
 
     useEffect(() => {
@@ -18,18 +20,17 @@ export function Dashboard({isLoggedIn}) {
         })
     }, []);
 
-    function deleteFavoriteInList(favoriteId) {
-        deleteFavorite(favoriteId);
-        const filteredArray = favorites.filter((favorite) => favorite.id !== favoriteId);
-        setFavorites(filteredArray);
-    }
-
     if (!isLoggedIn) {
         return <Navigate to="/login"/>
     }
     return (
         <>
             <Navbar/>
+            <Modal textToPresent={"Are you sure you want to delete this favorite?"}
+                   modalTitle={"Delete favorite"}
+                   setFavorites={setFavorites}
+                   favorites={favorites}
+                   deleteId={deleteId}/>
             <div className={"d-flex flex-row"}>
                 <div className={"col-6 border border-primary"}>
                     <h1 className={"display-3 m-5"}>Hallo {getPersonalInformation().firstName}</h1>
@@ -45,8 +46,11 @@ export function Dashboard({isLoggedIn}) {
                                         to={favorite.to}
                                         key={favorite.id}/>
                                     <i className="bi bi-trash-fill fs-1 mx-5 mt-2 trashIcon"
-                                       onClick={() => deleteFavoriteInList(favorite.id)}
-                                       key={"trashIcon" + index}></i>
+                                       data-bs-toggle="modal"
+                                       data-bs-target="#staticBackdrop"
+                                       key={"trashIcon" + index}
+                                       onClick={() => setDeleteId(favorite.id)}
+                                    ></i>
                                 </div>
                             )
                         }
