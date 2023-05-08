@@ -6,19 +6,6 @@ export function ListRow({from, to, searchParams, setSearchParams}) {
     const [availableConnections, setAvailableConnections] = useState([]);
     const [showDataOfTomorrow, setShowDataOfTomorrow] = useState(false);
 
-    function checkIfShow() {
-        return searchParams.get("connection") !== null && (searchParams.get("connection").includes(from)
-            && searchParams.get("connection").includes(to));
-    }
-
-    function insertQueryParams() {
-        if (!checkIfShow()) {
-            setSearchParams({connection: from + to});
-            return;
-        }
-        setSearchParams({connection: ""});
-    }
-
     function loadConnections() {
         retrieveConnections(from, to)
             .then((response) => {
@@ -31,6 +18,19 @@ export function ListRow({from, to, searchParams, setSearchParams}) {
                 }
                 setAvailableConnections(response.data.connections);
             });
+    }
+
+    function checkIfShow() {
+        return searchParams.get("connection") !== null && (searchParams.get("connection").includes(from)
+            && searchParams.get("connection").includes(to));
+    }
+
+    function insertQueryParams() {
+        if (!checkIfShow()) {
+            setSearchParams({connection: from + to});
+            return;
+        }
+        setSearchParams({connection: ""});
     }
 
     useEffect(() => {
