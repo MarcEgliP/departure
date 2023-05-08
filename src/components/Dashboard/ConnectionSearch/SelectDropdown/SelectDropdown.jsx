@@ -31,7 +31,7 @@ export function SelectDropdown({onOptionSelect, placeholderTag}) {
 
         <>
             <Select
-                styles={{ control: (base) => ({ ...base, width: "20em", height: "3em"})}}
+                styles={{ control: (base) => ({ ...base, width: "20em", height: "4em"})}}
                 className="dropdown-size"
                 selectedOption={selectedOption}
                 onMenuOpen={handleMenuOpened}

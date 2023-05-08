@@ -7,3 +7,7 @@
     color: #e4d00a;
     font-size: 2em;
 }
+
+.starIcon {
+    cursor: pointer;
+}
