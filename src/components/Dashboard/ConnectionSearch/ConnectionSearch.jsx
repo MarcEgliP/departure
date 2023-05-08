@@ -1,7 +1,7 @@
 import "bootstrap-icons/font/bootstrap-icons.css";
 import {SelectDropdown} from "./SelectDropdown/SelectDropdown";
 import {useState} from "react";
-import {findConnections} from "./ConnectionsSearch.service";
+import {findConnections, saveFavouriteCall} from "./ConnectionsSearch.service";
 import {ListRow} from "../ListRow/ListRow";
 
 export function ConnectionSearch() {
@@ -20,13 +20,18 @@ export function ConnectionSearch() {
             .then(result => result.data.connections)
             .then(connections => setConnections(connections))
     }
+    const saveFavorite=()=> {
+        const stationsNames = stations.map(e => e.value)
+        saveFavouriteCall(stationsNames[0], stationsNames[stations.length - 1])
+    }
+
     return (
         <>
             <SelectDropdown onOptionSelect={(value) => handleSelect(value, 0)}></SelectDropdown>
             <SelectDropdown onOptionSelect={(value) => handleSelect(value, 1)}></SelectDropdown>
             {/*TODO inplement disabled check*/}
             <button className="btn btn-outline-primary" onClick={submit}>Submit</button>
-            <button className="btn btn-outline-primary" onClick={submit}>Favorite</button>
+            <button className="btn btn-outline-primary" onClick={saveFavorite}>Favorite</button>
             <div>
                 {
                     connections && connections.map((connection, index) => <ListRow
