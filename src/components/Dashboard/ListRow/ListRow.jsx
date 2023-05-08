@@ -1,8 +1,7 @@
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {retrieveConnections, retrieveConnectionsOfTomorrow} from "./list-row-service";
 import {Connection} from "./Connection/Connection";
 import {BsArrowRight} from "react-icons/bs";
-
 import PropTypes from "prop-types";
 
 export function ListRow({from, to, searchParams, setSearchParams}) {
@@ -85,5 +84,7 @@ export function ListRow({from, to, searchParams, setSearchParams}) {
 
 ListRow.propTypes = {
     from: PropTypes.any,
-    to: PropTypes.any
+    to: PropTypes.any,
+    searchParams: PropTypes.any,
+    setSearchParams:PropTypes.func
 };
