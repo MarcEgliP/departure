@@ -34,9 +34,10 @@
     "credentials_error": "Email oder Password invalid"
   },
   "form": {
+    "header": "Anmelden",
     "password": "Passwort eingeben",
     "email": "Email eingeben",
-    "login": "Einloggen test"
+    "login": "Einloggen"
   },
   "nav": {
     "logOut": "Ausloggen"
