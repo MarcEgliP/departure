@@ -17,15 +17,16 @@ export function Dashboard({isLoggedIn}) {
     const [favoriteId, setFavoriteId] = useState(-1);
     const {t} = useTranslation();
 
+    if (!isLoggedIn) {
+        return <Navigate to="/login"/>
+    }
+
     useEffect(() => {
         retrieveFavorites().then((response) => {
             setFavorites(response.data);
         })
     }, []);
 
-    if (!isLoggedIn) {
-        return <Navigate to="/login"/>
-    }
     return (
         <>
             <Navbar/>
