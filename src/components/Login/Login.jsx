@@ -2,7 +2,7 @@ import './Login.css';
 import React, {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {processLoginResponse} from "../../helpers/storage";
-import {retrieveToken} from "./login-service";
+import {retrieveToken} from "./login.service";
 import PropTypes from "prop-types";
 import {useTranslation} from "react-i18next";
 

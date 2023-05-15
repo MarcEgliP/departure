@@ -5,7 +5,7 @@ import {findConnections, saveFavouriteCall} from "./ConnectionsSearch.service";
 import {Spinner} from "react-bootstrap";
 import "./ConnectionsSearch.css";
 import {BsArrowRight, BsFillStarFill, BsStar} from "react-icons/bs";
-import {deleteFavorite, retrieveFavorites} from "../dashboard-service";
+import {deleteFavorite, retrieveFavorites} from "../dashboard.service";
 import {SearchResult} from "./SearchResult/SearchResult";
 import {useTranslation} from "react-i18next";
 

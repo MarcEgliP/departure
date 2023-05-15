@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {retrieveConnections, retrieveConnectionsOfTomorrow} from "./list-row-service";
+import {retrieveConnections, retrieveConnectionsOfTomorrow} from "./list-row.service";
 import {Connection} from "./Connection/Connection";
 import {BsArrowRight} from "react-icons/bs";
 import {MINUTE_IN_MILLISECONDS} from "../../../helpers/constants-library";

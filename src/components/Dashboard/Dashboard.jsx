@@ -2,7 +2,7 @@ import {Navbar} from "../Navbar/Navbar";
 import {ListRow} from "./ListRow/ListRow";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import React, {useEffect, useState} from "react";
-import {retrieveFavorites} from "./dashboard-service";
+import {retrieveFavorites} from "./dashboard.service";
 import {getPersonalInformation} from "../../helpers/storage";
 import {Navigate, useSearchParams} from "react-router-dom";
 import {Modal} from "./Modal/Modal";
