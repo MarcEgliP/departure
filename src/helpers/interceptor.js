@@ -5,6 +5,7 @@ axios.interceptors.request.use(
     function (config) {
         if(!config.url.includes("/transport.opendata.ch")){
             config.headers = {...config.headers, 'x-access-token': getToken()}
+            config.url = process.env.REACT_APP_URL + config.url
         }
 
         return config;
