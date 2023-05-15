@@ -29,7 +29,7 @@ export function Dashboard({isLoggedIn}) {
     return (
         <>
             <Navbar/>
-            <Modal textToPresent={"Are you sure you really want to delete this favoriteId?"}
+            <Modal textToPresent={"Are you sure you want to delete this favoriteId?"}
                    modalTitle={"Delete favoriteId"}
                    setFavorites={setFavorites}
                    favorites={favorites}
