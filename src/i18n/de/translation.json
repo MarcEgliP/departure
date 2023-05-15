@@ -36,7 +36,7 @@
   "form": {
     "password": "Passwort eingeben",
     "email": "Email eingeben",
-    "login": "Einloggen"
+    "login": "Einloggen test"
   },
   "nav": {
     "logOut": "Ausloggen"
