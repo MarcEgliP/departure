@@ -1,5 +1,5 @@
 import "bootstrap-icons/font/bootstrap-icons.css";
-import {deleteFavorite} from "../dashboard-service";
+import {deleteFavorite} from "../dashboard.service";
 import React from "react";
 
 
